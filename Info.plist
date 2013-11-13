@@ -1,0 +1,6 @@
+{
+	CFBundleIdentifier = "com.mowglii.itsytheme.itsymavericks";
+	ItsyThemeName = "Itsy Mavericks";
+	ItsyThemeAuthor = jrschumacher;
+	ItsyThemeURL = "http://github.com/jrschumacher";
+}

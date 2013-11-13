@@ -1,0 +1,364 @@
+
+* {
+    cursor: default;
+    color: #111;
+    font: 11px 'Helvetica Neue Ultra Light', 'Helvetica Neue', 'Helvetica', sans-serif;
+}
+
+body {
+    -webkit-user-select: none;
+}
+
+a {
+	color: #27b;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn {
+    opacity: 0.5;
+    outline: 0px;
+	margin-right: 4px;
+    padding: 4px;
+    border: 1px solid #0079FE;
+    -webkit-border-radius: 3px;
+    color: #0079FE;
+    line-height: 1;
+    text-align: center;
+}
+.btn:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+.btn:active {
+    opacity: 1;
+}
+
+#dvbackground {
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background: #eee url(101@2x~iphone.png) repeat-x;
+}
+
+#dvpanelcontainer {
+    position: fixed;
+    bottom: 0px;
+    background: rgb(255,255,255);
+}
+
+#dvhome, #dvment, #dvmsgs, #dvsrch, #dvconv {
+	position: absolute;
+    top: 0px;
+    bottom: 0px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+/* 
+ ********* STATUS MESSAGE *********
+ */
+
+.status-row {
+	clear: both;
+    border: 1px solid transparent;
+    border-left: 0;
+    border-right: 0;
+    margin: 5px 5px;
+    padding: 2px 0px;
+}
+
+.status-row:hover .statusactions {
+	opacity: 1;
+}
+
+.status-row.favorite .favicon {
+	display: block;
+}
+
+.avatar {
+	margin-top: 1px;
+    float: left;
+}
+
+.avatar img {
+	height: 30px;
+    width: 30px;
+    -webkit-border-radius: 3px;
+}
+
+.status {
+	position: relative; /* so text selection highlight stays within status */
+    margin-left: 34px;
+    padding: 2px 4px 4px 4px;
+    word-wrap: break-word;
+    -webkit-user-select: text;
+}
+
+.status-row.selected {
+    border-top-color: transparent;
+    border-left: 0;
+    border-right: 0;
+    -webkit-box-shadow: 0 5px 10px -8px #0079FE;
+}
+
+.status-row.myself .avatar {
+	float: right;
+}
+
+.status-row.myself .status {
+	margin-left: 2px;
+	margin-right: 34px;
+    -webkit-border-top-left-radius: 6px;
+    -webkit-border-top-right-radius: 0px;
+}
+
+.status-row.mention .status {
+    border: 1px solid #aac;
+    border-top: 1px solid #bbd;
+    border-bottom: 1px solid #88a;
+    background: rgba(235,235,255,.9);
+    -webkit-box-shadow: 0px 1px 2px #c0c0c0;
+}
+
+.status-row.mention.selected .status {
+    border: 1px solid #99c;
+    border-top: 1px solid #aad;
+    border-bottom: 1px solid #77a;
+    background: rgba(210,210,255,.9);
+    -webkit-box-shadow: 0px 1px 2px #c0c0c0, inset 0px 0px 1px 1px rgba(255,255,255,.6);
+}
+
+.screenName {
+	height: 14px; /* matches height of favicon */
+    padding-top: 1px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.screenName a {
+   	color: #26b;
+    font-weight: bold;
+}
+
+.inlineImage {
+    width: 100%;
+    cursor: pointer;
+}
+
+.statusfooter {
+	clear: both;
+	height: 24px; /* 16 for buttons + 8 top and bottom padding */
+}
+
+.timestamp, .timestamp a, .retweetedByline, .retweetedByline a {
+	padding: 4px 0px;
+    white-space: nowrap;
+	color: #aeaeae;
+    letter-spacing: 1px;
+    font-weight:150;
+}
+
+.timestamp a:hover, .retweetedByline a:hover {
+    color: #666;
+}
+
+.retweetedByline {
+	clear: both;
+	padding: 5px 0px 0px 0px;
+}
+
+.statusactions {
+	float: right;
+    padding: 4px 0px;
+	opacity: 0;  /* opacity: 1 on .status-row:hover */
+	-webkit-transition-duration: 0.3s;
+	-webkit-transition-property: opacity;
+}
+
+.favicon {
+	float: right;
+    width: 14px;
+    height: 14px;
+    background: url(toolbar.png) -97px -77px no-repeat;
+	display: none; /* display:block on .status-row.favorite */
+}
+
+.del, .dm, .fav, .reply, .rt, .conv {
+	float: right;
+    margin-right: 4px;
+    width: 14px;
+    height: 14px;
+    cursor: default;
+    background: url(toolbar.png) no-repeat;
+    opacity: 0.5;
+}
+
+.del          { background-position: -80px -59px;}
+.del:hover    { background-position: -80px -75px; opacity: 1;}
+.dm           { background-position: -64px -59px;}
+.dm:hover     { background-position: -64px -75px; opacity: 1;}
+.fav          { background-position: -48px -59px;}
+.fav:hover    { background-position: -48px -75px; opacity: 1;}
+.reply        { background-position: -32px -59px;}
+.reply:hover  { background-position: -32px -75px; opacity: 1;}
+.rt           { background-position: -16px -59px;}
+.rt:hover     { background-position: -16px -75px; opacity: 1;}
+.conv         { background-position:   0px -59px;}
+.conv:hover   { background-position:   0px -75px; opacity: 1;}
+
+/* 
+ ********* CONVERSATION *********
+ */
+ 
+.convloading {
+	padding: 4px;
+    white-space: nowrap;
+	color: #aaa;
+    font-weight: bold;
+}
+
+/* 
+ ********* SEARCH *********
+ */
+
+#dvsearchbox {
+    text-align: center;
+    padding: 4px;
+}
+
+#insearchbox {
+    width: 80%;
+    outline: 0px;
+    opacity: .8;
+}
+
+#dvsearchresults {
+    position: absolute;
+    top: 30px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+/* 
+ ********* TOOLBAR *********
+ */
+
+#dvtoolbar {
+    padding: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 2px;
+    background: rgba(255,255,255,0.95);
+    border-bottom: 1px solid #BBBBBB;
+}
+
+#dvcaret {
+    position: absolute;
+    top: 1px;
+    width: 20px;
+    /*background: url(toolbar.png) 0px -40px no-repeat;*/
+    border-bottom: 1px solid #0079FF;
+}
+
+#bnhome, #bnment, #bnmsgs, #bnsrch, #bntogg {
+    width: 20px;
+    height: 14px;
+    float: left;
+    margin-right: 10px;
+    margin-left: 3px;
+    background: url(toolbar.png) no-repeat;
+}
+#bntogg {
+	float:right;
+    margin-right: 0px;
+}
+.unlit#bnhome { background-position:   0px   0px; }
+.unlit#bnment { background-position: -20px   0px; }
+.unlit#bnmsgs { background-position: -40px   0px; }
+.lit#bnhome   { background-position:   0px -20px; }
+.lit#bnment   { background-position: -20px -20px; }
+.lit#bnmsgs   { background-position: -40px -20px; }
+#bnsrch { background-position:  -80px 0px; }
+#bntogg { background-position: -100px 0px; }
+
+/* 
+ ********* UPDATE AREA *********
+ */
+
+#dvupdatearea {
+    position: absolute;
+    padding: 5px 2px;
+    top: 0;
+    left: 0px;
+    right: 0px;
+    display: none;
+    background: rgba(255,255,255,0.95);
+}
+
+#taupdatearea {
+    padding: 6px;
+    width: 100%;
+    background-color: #fff;
+    outline: 0px;
+    border: 0;
+}
+
+#taupdatearea::-webkit-scrollbar {
+    width: 3px;
+    margin-right: 2px;
+}
+
+#taupdatearea::-webkit-scrollbar-thumb:vertical {
+    height: 15px;
+    border: 0px;
+    background: rgba(0,0,0,.2);
+    -webkit-border-radius: 3px;
+}
+
+#bnshorten {
+    width: 20px;
+    height: 20px;
+    background: url(toolbar.png) -20px -40px no-repeat;
+}
+
+/* 
+ ********* MSG *********
+ */
+
+#dvmsg, #dvconfirmrt, #dvconfirmdelete {
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    padding: 10px 15px;
+    color: #333;
+    font-weight: bold;
+    border-bottom: 4px solid #FD2323;
+    background: #fff;
+    text-shadow: 0px 1px 1px rgba(255,255,255,0.5);
+    -webkit-box-shadow: 0px 1px 4px #666;
+}
+
+/* 
+ ********* SCROLLBAR *********
+ */
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+    height: 30px;
+    border-width: 8 0 8 0;
+    -webkit-border-image: url(thumb.png) 8 0 8 0 stretch stretch;
+}
